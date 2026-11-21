@@ -3,7 +3,7 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -11,14 +11,14 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "com.google.gms:google-services:${versions.googleServices}"
         classpath "com.google.firebase:firebase-crashlytics-gradle:${versions.crashlyticsPlugin}"
-        classpath "com.diffplug.spotless:spotless-plugin-gradle:${versions.spotlessPlugin}"
     }
 }
 
 allprojects {
     repositories {
+        // Koin 1.0.2 is archived locally because its original repository is retired.
+        maven { url uri(rootProject.file('vendor/maven')) }
         google()
-        jcenter()
         mavenCentral()
     }
 }

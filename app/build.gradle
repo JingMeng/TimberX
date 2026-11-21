@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 apply from: '../dependencies.gradle'
 
 android {
+    namespace 'com.naman14.timberx'
+    buildFeatures { buildConfig true }
     compileSdkVersion versions.targetSdk
     defaultConfig {
         applicationId "com.naman14.timberx"
@@ -14,9 +16,6 @@ android {
         versionCode versions.versionCode
         versionName versions.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildFeatures {
-        compose true
     }
     buildTypes {
         release {
@@ -36,19 +35,16 @@ android {
     testOptions.unitTests.includeAndroidResources = true
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
-        useIR = true
+        jvmTarget = "11"
+        // AGP data binding uses newer Kotlin metadata while synthetic views require Kotlin 1.7.
+        freeCompilerArgs += ['-Xskip-metadata-version-check']
     }
 
-    composeOptions {
-        kotlinCompilerVersion versions.kotlin
-        kotlinCompilerExtensionVersion versions.compose
-    }
 }
 
 dependencies {
@@ -78,7 +74,6 @@ dependencies {
     implementation "androidx.room:room-runtime:${versions.room}"
     kapt "androidx.room:room-compiler:${versions.room}"
 
-    kapt "com.android.databinding:compiler:${versions.databinding}"
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
@@ -115,7 +110,6 @@ dependencies {
 
     // Debug
     implementation "com.jakewharton.timber:timber:${versions.timber}"
-    debugImplementation "com.amitshekhar.android:debug-db:${versions.debugDb}"
 
     // Unit Testing
     testImplementation "junit:junit:${versions.junit}"
@@ -129,17 +123,8 @@ dependencies {
     androidTestImplementation "androidx.test:runner:${versions.androidxTestRunner}"
     androidTestImplementation "androidx.test:rules:${versions.androidxTestRunner}"
 
-    // Compose
-    implementation "androidx.compose.ui:ui:${versions.compose}"
-    implementation "androidx.ui:ui-tooling:${versions.compose}"
-    implementation "androidx.compose.foundation:foundation:${versions.compose}"
-    implementation "androidx.compose.material:material:${versions.compose}"
-    implementation "androidx.compose.material:material-icons-core:${versions.compose}"
-    implementation "androidx.compose.material:material-icons-extended:${versions.compose}"
-    implementation "androidx.compose.runtime:runtime-livedata:${versions.compose}"
 }
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
-apply from: '../spotless.gradle'
 apply from: '../mock.gradle'

@@ -98,9 +98,7 @@ class TimberMusicService : MediaBrowserServiceCompat(), KoinComponent, Lifecycle
     private val permissionsManager by inject<PermissionsManager>()
 
     private lateinit var becomingNoisyReceiver: BecomingNoisyReceiver
-    private val lifecycle = LifecycleRegistry(this)
-
-    override fun getLifecycle() = lifecycle
+    override val lifecycle = LifecycleRegistry(this)
 
     override fun onCreate() {
         super.onCreate()

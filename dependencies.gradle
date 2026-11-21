@@ -1,18 +1,18 @@
 ext.versions = [
         // App
         minSdk            : 21,
-        targetSdk         : 28,
+        targetSdk         : 34,
         versionCode       : 10,
         versionName       : "1.9",
 
         // Plugins
-        gradlePlugin      : "4.2.0-alpha13",
-        googleServices    : "4.2.0",
-        crashlyticsPlugin : "2.3.0",
+        gradlePlugin      : "8.2.1",
+        googleServices    : "4.4.1",
+        crashlyticsPlugin : "2.9.9",
         spotlessPlugin    : "3.17.0",
 
         // Kotlin
-        kotlin            : "1.4.10",
+        kotlin            : "1.7.22",
         coroutines        : "1.1.1",
 
         // AndroidX
@@ -31,7 +31,7 @@ ext.versions = [
 
         // Arch Components
         lifecycle         : "2.1.0-alpha02",
-        room              : "2.2.5",
+        room              : "2.5.2",
         databinding       : "3.2.0-alpha10",
 
         // RxJava
